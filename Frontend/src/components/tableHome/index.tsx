@@ -22,8 +22,10 @@ export default function TableHome() {
   const tarefas = useAppSelector((state) => state.tarefas);
 
   const [openModal, setOpenModal] = useState(false);
-  // const [idSelecionado, setIdSelecionado] = useState('');
   const [tarefaSelecionada, setTarefaSelecionada] = useState<Tarefa>();
+
+  const [hoveredRow, setHoveredRow] = useState<string | null>(null);
+
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -37,7 +39,6 @@ export default function TableHome() {
   };
 
   const handleDelete = (id: string) => {
-    // setIdSelecionado(id);
     dispatch(deleteTarefa(id)).then(()=>{
       dispatch(getTarefas());
     });
@@ -52,19 +53,32 @@ export default function TableHome() {
     <Grid item md={12} margin={1} sx={{ display: { xs: "none", md: "flex" } }}>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
-          <TableHead sx={{ backgroundColor: " #040d5e6e " }}>
+          <TableHead sx={{ backgroundColor: blue[900] }}>
             <TableRow>
-              <TableCell>#</TableCell>
+              <TableCell sx={{ color: "white" }}>#</TableCell>
               {/* <TableCell>Titulo</TableCell> */}
-              <TableCell>Descrição</TableCell>
-              <TableCell align="center">Ação</TableCell>
+              <TableCell sx={{ color: "white" }}>Descrição</TableCell>
+              <TableCell sx={{ color: "white" }} align="center">
+                Ação
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {Object.values(tarefas.entities).map((tarefa, index) => (
               <TableRow
                 key={tarefa?.id}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                onMouseEnter={() => setHoveredRow(tarefa?.id)}
+                onMouseLeave={() => setHoveredRow(null)}
+                // sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                sx={{
+                  "&:last-child td, &:last-child th": { border: 0 },
+                  backgroundColor:
+                    hoveredRow === tarefa?.id
+                      ? "#cfd8dc"
+                      : index % 2 === 0
+                      ? "#f0f0f0"
+                      : "inherit",
+                }}
               >
                 <TableCell component="th" scope="row">
                   {index + 1}

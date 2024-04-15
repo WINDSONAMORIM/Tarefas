@@ -1,5 +1,4 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -15,7 +14,12 @@ export const CardDefault = () => {
     // <Grid item spacing={2} xs={12} sx={{ display: { xs: "flex", md: "none" } }}>
     <>
       {Object.values(tarefas.entities).map((tarefa, index) => (
-        <Grid item xs={12} sx={{ display: { xs: "flex", md: "none" } }}>
+        <Grid
+          item
+          key={index}
+          xs={12}
+          sx={{ display: { xs: "flex", md: "none" } }}
+        >
           <Card sx={{ minWidth: 275, margin: 2 }}>
             <CardContent>
               <Typography variant="h5" component="div">

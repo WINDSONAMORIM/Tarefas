@@ -15,8 +15,12 @@ export const { selectAll: buscarTarefas, selectById: buscarTarefaPorId } =
   adapter.getSelectors((state: RootState) => state.tarefas);
 
 export const getTarefas = createAsyncThunk("tarefa/getTarefas", async () => {
-  const resposta = await apiGet("/tarefa");
-  return resposta;
+  try {
+    const resposta = await apiGet("/tarefa");
+    return resposta;
+  } catch (error: any) {
+    throw error
+  }
 });
 
 export const postTarefa = createAsyncThunk("tarefa/postTarefa",
@@ -89,5 +93,5 @@ const tarefasSlice = createSlice({
   },
 });
 
-export const {} = tarefasSlice.actions;
+// export const {} = tarefasSlice.actions;
 export const tarefasReducer = tarefasSlice.reducer;

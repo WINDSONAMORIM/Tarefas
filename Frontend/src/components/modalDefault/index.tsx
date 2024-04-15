@@ -1,6 +1,6 @@
 import { Box, Button, Grid, Modal, Stack, TextField, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../store/hoocks";
+import { useAppDispatch } from "../../store/hoocks";
 import { Tarefa } from "../../store/modules/typesStore";
 import { getTarefas, putTarefa } from "../../store/modules/tarefas/tarefasSlice";
 
