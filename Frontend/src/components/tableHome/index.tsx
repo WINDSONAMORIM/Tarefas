@@ -69,7 +69,6 @@ export default function TableHome() {
                 key={tarefa?.id}
                 onMouseEnter={() => setHoveredRow(tarefa?.id)}
                 onMouseLeave={() => setHoveredRow(null)}
-                // sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 sx={{
                   "&:last-child td, &:last-child th": { border: 0 },
                   backgroundColor:
