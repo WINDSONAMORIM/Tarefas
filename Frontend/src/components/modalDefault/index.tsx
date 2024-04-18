@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useAppDispatch } from "../../store/hoocks";
 import { Tarefa } from "../../store/modules/typesStore";
 import { getTarefas, putTarefa } from "../../store/modules/tarefas/tarefasSlice";
+import { Height } from "@mui/icons-material";
 
 interface ModalDefaultProps {
   open: boolean;
@@ -13,9 +14,12 @@ interface ModalDefaultProps {
 export const ModalDefault = ({ open, handleClose, tarefa }: ModalDefaultProps) => {
   const styleModal = {
     position: "absolute" as "absolute",
+    width:"90%",
     top: "50%",
     left: "50%",
+    borderRadius: "2px",
     transform: "translate(-50%, -50%)",
+    boxShadow: "10px 10px 5px 0px rgba(158,181,242,1)",
   };
   
   const dispatch = useAppDispatch();
@@ -43,13 +47,20 @@ export const ModalDefault = ({ open, handleClose, tarefa }: ModalDefaultProps) =
   };
 
   return (
-    <Modal sx={styleModal} open={open}>
+    <Modal
+      sx={{ ...styleModal, width: { xs: "90%", md: "auto" } }}
+      open={open}      
+    >
       <Box
         style={{
           backgroundColor: "white",
           width: "100%",
           height: "100%",
           padding: "20px",
+          borderRadius: "2px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
         <Typography variant="h6">ALTERAR TAREFA</Typography>
